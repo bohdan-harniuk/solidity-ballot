@@ -29,9 +29,30 @@ The `test` directory contains automated tests for the `Ballot` contract using th
 
 ### Test Scenarios
 
-- Ensuring only the chairperson can give voting rights.
-- Preventing already voted or delegated voters from receiving or delegating further.
-- Validating vote counts and delegation logic.
+- **Giving Right to Vote**: Verifies that only the chairperson can give voting rights and that these rights cannot be assigned to those who have already voted or been granted rights before.
+  - Tests ensure that a non-chairperson cannot give voting rights.
+  - Checks that a voter who has already voted cannot be granted new voting rights.
+  - Confirms that voters who have already been granted voting rights cannot receive them again.
+
+- **Delegating Voting Rights**: Tests the ability of voters to delegate their voting rights to another voter and ensures that delegation logic is handled correctly.
+  - Ensures that voters can delegate their rights to another eligible voter.
+  - Confirms that self-delegation is disallowed.
+  - Verifies that voters cannot delegate if they have already voted.
+  - Checks for circular delegation to prevent infinite loops.
+  - Ensures that a voter cannot delegate to another who has no right to vote.
+
+- **Voting**: Assesses the functionality of casting votes, handling votes through delegation, and ensuring voters can only vote if they have the rights.
+  - Tests that a voter can successfully cast a vote if they have the right.
+  - Ensures that votes can accumulate correctly through delegation.
+  - Checks that a voter without voting rights cannot vote.
+  - Verifies that a voter cannot vote more than once.
+
+- **Voting Results**: Evaluates the contract’s ability to compute the winning proposal based on the votes received.
+  - Ensures that the contract can return the correct winner names and corresponding numbers.
+  - Confirms that the count of winning proposal numbers matches the names of winners.
+  - Validates the correspondence between winning proposal numbers and the correct proposal names.
+
+These tests are critical for verifying the functional and security aspects of the Ballot contract, ensuring it behaves as expected under various scenarios.
 
 ## Getting Started
 
